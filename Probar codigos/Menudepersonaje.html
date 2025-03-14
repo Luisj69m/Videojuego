@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mortal Kombat - Selección de Personajes</title>
+    <link rel="stylesheet" href="estilo.css">
+    <script src="menupersonajescript.js"></script>
+</head>
+<body>
+    <div class="contenedor">
+        <h1>Selección de Personajes</h1>
+        <div class="seleccion">
+            <div class="jugador1">
+                <h2>Jugador 1</h2>
+                <select id="jugador1" onchange="seleccionarPersonaje('jugador1')">
+                    <option value="">Seleccionar</option>
+                    <option value="BeetleJuice_eleccion">Beetlejuice</option>
+                    <option value="Cj_eleccion">Cj</option>
+                    <option value="Diddy_eleccion">Diddy</option>
+                    <option value="Eltoque_eleccion">El Toque</option>
+                    <option value="Negro_Sanchez">Negro Sanchez</option>
+                    <option value="anto_eleccion">Anto</option>
+                    <option value="churumbel_eleccion">Churumbel</option>
+                    <option value="Illojuan_eleccion">Illojuan</option>
+                    <option value="joaquin_eleccion">Joaquin</option>
+                    <option value="Skippy_eleccion">Skippy</option>
+                    <option value="among_eleccion">Among Us</option>
+                    <option value="DonPolloEleccion">Don Pollo</option>
+                    <option value="goku_eleccion">Goku FASE CALVO</option>
+                    <option value="ricardo_eleccion">Ricardo Milos</option>
+                    <option value="Walter_eleccion">Walter el Blanco</option>
+                    <option value="abascal_eleccion">Abascal</option>
+                    <option value="Franco_eleccion">Franco</option>
+                    <option value="Pablo_iglesias">Pablo Iglesias</option>
+                    <option value="Puigdemont_eleccion">Puigdemont</option>
+                    <option value="Rajoy_eleccion">Rajoy</option>
+                </select>
+                <div class="imagen-personaje" id="imagen-jugador1"></div>
+            </div>
+
+            <div class="vs">VS</div>
+
+            <div class="jugador2">
+                <h2>Jugador 2</h2>
+                <select id="jugador2" onchange="seleccionarPersonaje('jugador2')">
+                    <option value="">Seleccionar</option>
+                    <option value="BeetleJuice_eleccion">Beetlejuice</option>
+                    <option value="Cj_eleccion">Cj</option>
+                    <option value="Diddy_eleccion">Diddy</option>
+                    <option value="ElToque">El Toque</option>
+                    <option value="Negro_Sanchez">Negro Sanchez</option>
+                    <option value="anto_eleccion">Anto</option>
+                    <option value="churumbel_eleccion">Churumbel</option>
+                    <option value="Illojuan_eleccion">Illojuan</option>
+                    <option value="joaquin_eleccion">Joaquin</option>
+                    <option value="Skippy_eleccion">Skippy</option>
+                    <option value="among_eleccion">Among Us</option>
+                    <option value="DonPolloEleccion">Don Pollo</option>
+                    <option value="goku_eleccion">Goku FASE CALVO</option>
+                    <option value="ricardo_eleccion">RicardoMilos</option>
+                    <option value="Walter_eleccion">Walter</option>
+                    <option value="abascal_eleccion">Abascal</option>
+                    <option value="Baraka">Franco</option>
+                    <option value="Pablo_iglesias">PabloIglesias</option>
+                    <option value="Puigdemont_eleccion">Puigdemont</option>
+                    <option value="Rajoy_eleccion">Rajoy</option>
+                </select>
+                <div class="imagen-personaje" id="imagen-jugador2"></div>
+            </div>
+        </div>
+
+        <button id="botonCombate" onclick="iniciarCombate()" disabled>Comenzar Combate</button>
+    </div>
+
+    <script>
+        function seleccionarPersonaje(jugador) {
+            const seleccion = document.getElementById(jugador);
+            const divImagen = document.getElementById(`imagen-${jugador}`);
+            const personaje = seleccion.value;
+
+            if (personaje) {
+                divImagen.innerHTML = `<img src="images/${personaje}.png" alt="${personaje}">`;
+            } else {
+                divImagen.innerHTML = "";
+            }
+
+            verificarBotonCombate();
+        }
+
+        function verificarBotonCombate() {
+            const jugador1 = document.getElementById("jugador1").value;
+            const jugador2 = document.getElementById("jugador2").value;
+            const boton = document.getElementById("botonCombate");
+
+            if (jugador1 && jugador2) {
+                boton.disabled = false;
+            } else {
+                boton.disabled = true;
+            }
+        }
+
+        function iniciarCombate() {
+            const jugador1 = document.getElementById("jugador1").value;
+            const jugador2 = document.getElementById("jugador2").value;
+
+            if (jugador1 && jugador2) {
+                window.location.href = `combate.html?jugador1=${jugador1}&jugador2=${jugador2}`;
+            }
+        }
+    </script>
+</body>
+</html>
